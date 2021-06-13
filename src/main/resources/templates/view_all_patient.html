@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <title>Home Page</title>
+                <link rel="stylesheet" type="text/css" href="/css/style.css">
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">     
+        </head>
+        <body>
+                <div class="full-page">
+                        <div class=navbar1>
+                                <a href="/">Healthcare<br> WebApp</a>
+                                <div class ="title">
+                                    <h1>All Patients</h1>
+                                </div>
+                        </div>
+                        <div id="all-patient"class="all-p-page">
+                            <div class="all-patient-form">
+                                <table class="styled-table">
+                                    <thead>
+                                    <tr class="active-row">
+                                        <th>Patient ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>City</th>
+                                        <th>Pin Code</th>
+                                        <th>Actions</th>
+                                        <th>Attachments</th>
+                                        <th>View Profile</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="patient : ${patients}" >
+                                            <td th:text="${patient.id}"></td>
+                                            <td th:text="${patient.firstName}"></td>
+                                            <td th:text="${patient.lastName}"></td>
+                                            <td th:text="${patient.age}"></td>
+                                            <td th:text="${patient.gender}"></td>
+                                            <td th:text="${patient.city}"></td>
+                                            <td th:text="${patient.pincode}"></td>
+                                            <td>
+                                                <a th:href="@{'/edit/' + ${patient.id}}"><i class="material-icons">edit</i></a>
+
+                                                <a th:href="@{'/delete/' + ${patient.id}}"><i class="material-icons">delete</i></a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{'/upload_image/' + ${patient.id}}"><i class="material-icons">insert_photo</i></a>
+                                
+                                                <a th:href="@{'/docs/' + ${patient.id}}"><i class="material-icons">note_add</i></a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{'/patient_details/' + ${patient.id}}"><i class="material-icons">person</i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="pg">
+                                        <nav aria-label="Page navigation example">
+                                            <ul>
+                                                <li class="page-item" th:classappend="${number eq totalPages-1} ? 'disabled'">
+                                                    <a class="page-link svg-icon"
+                                                        th:if="${currentPage >= 0}"  th:href="@{0}">First</a>
+                                                        <span th:unless= "${currentPage >= 0}" >First</span>
+                                                </li>
+                                                 <li class="page-item" th:classappend="${number eq 1} ? 'disabled'">
+                                                    <a class="page-link svg-icon"
+                                                        th:if="${currentPage > 0}" th:href="@{${currentPage}-1 }">&laquo;</a>
+                                                        <span th:unless= "${currentPage >= 0}" >&laquo;</span>    
+                                                    </a>
+                                                </li>
+                                            
+                                            
+                                                 <li class="page-item" th:classappend="${i eq number} ? 'active'"
+                                                    th:each="i : ${#numbers.sequence( number, totalPages > 5 + number ? number + 5 : totalPages, 1)}">
+                                                    <a class="page-link" th:href="@{${i} }" th:text="${i}"
+                                                       th:title="${'Page '+ i}"
+                                                       rel="tooltip"></a>
+                                                </li>
+                                                
+                                                <li class="page-item disabled" th:if="${number + 5 < totalPages}">
+                                                    <a class="page-link svg-icon" href="#">
+                                                        <span data-feather="more-horizontal" width="20" height="20"></span>
+                                                        <span aria-hidden="true">...</span>
+                                                    </a>
+                                                </li>
+                                            
+                                                <li class="page-item" th:classappend="${number eq totalPages} ? 'disabled'">
+                                                    <a class="page-link svg-icon"
+                                                    th:if="${currentPage < totalPages-1}" th:href="@{${currentPage}+1  }">&raquo;</a>
+                                                    <span th:unless= "${currentPage < totalPages}" >&raquo;</span>
+                                                </li>
+                                            
+                                                <li class="page-item" th:classappend="${number eq totalPages} ? 'disabled'">
+                                                    <a class="page-link svg-icon"
+                                                      th:if="${currentPage < totalPages}" th:href="@{${totalPages}-1}">Last</a>
+                                                    <span th:unless= "${currentPage <= totalPages}" >Last</span>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        </div>
+                                </div>
+                            </div>
+                    </div>
+            </body>
+    </html>
