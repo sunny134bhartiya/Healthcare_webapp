@@ -1,11 +1,11 @@
-package com.karkinos.webapp;
+package com.karkinos.webapp.controllerMongo;
 
 import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.karkinos.webapp.model.Doctor;
-import com.karkinos.webapp.repository.DoctorRepository;
+import com.karkinos.webapp.modelMongo.Doctor;
+import com.karkinos.webapp.repositoryMongo.DoctorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

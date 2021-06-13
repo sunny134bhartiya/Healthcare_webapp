@@ -1,4 +1,4 @@
-package com.karkinos.webapp.model;
+package com.karkinos.webapp.modelMongo;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.NotBlank;
