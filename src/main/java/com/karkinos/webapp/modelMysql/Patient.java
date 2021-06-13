@@ -12,11 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 
 @Entity 
@@ -27,29 +22,29 @@ public class Patient {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
- // @NotBlank
- // @Pattern(regexp = "^[a-zA-Z0-9'.]{3,50}$" , message = "only alphabets, numbers, apostrophe, dot characters are allowed, Firstname must be 3-50 characters long")
+//  @NotBlank
+//  @Pattern(regexp = "^[a-zA-Z0-9'.]{3,50}$" , message = "only alphabets, numbers, apostrophe, dot characters are allowed, Firstname must be 3-50 characters long")
   private String firstName;
 
- //@NotBlank
- // @Pattern(regexp = "^[a-zA-Z0-9'.]{3,50}$" , message = "only alphabets, numbers, apostrophe, dot characters are allowed, Firstname must be 3-50 characters long")
+//  @NotBlank
+//  @Pattern(regexp = "^[a-zA-Z0-9'.]{3,50}$" , message = "only alphabets, numbers, apostrophe, dot characters are allowed, Firstname must be 3-50 characters long")
   private String lastName;
 
- // @NotNull @Min(0) @Max(125)
+//  @NotNull @Min(0) @Max(125)
   private String age;
 
- // @NotBlank
+//  @NotBlank
   private String gender;
 
-  //@NotBlank
- // @Pattern(regexp = "^[A-Za-z]{3,100}$", message = "Please enter between {min} and {max}")
+//   @NotBlank
+//  @Pattern(regexp = "^[A-Za-z]{3,100}$", message = "Please enter between {min} and {max}")
   private String city;
 
-  //@NotBlank
+  // @NotBlank
   // @Pattern(regexp="^[1-9][0-9]{5}$", message="Pincode is invalid")
   private String pincode;
 
-  //@Column(nullable = true, length = 64)
+  @Column(nullable = true, length = 64)
   private String photos;
   
 
@@ -71,7 +66,6 @@ public class Patient {
     this.pincode = pincode;
     this.photos=photos;
     this.documents = documents;
-    //this.docs=docs;
   }
 
   public Long getId() {
@@ -131,7 +125,6 @@ public class Patient {
   @Transient
     public String getPhotosImagePath() {
         if (photos == null || id == 0) return null;
-        // if (photos == null) return null;
         return "/patient-photos/" + id + "/" + photos;
     }
 

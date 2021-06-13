@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-//import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,7 +18,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity 
@@ -73,7 +71,6 @@ public class Documents {
     @Transient
     public String getDocsFilePath() {
         if (docName == null || docId == 0) return null;
-        // if (photos == null) return null;
         return "/patient-docs/" + patients.getId() + "/" ;
     }
 
