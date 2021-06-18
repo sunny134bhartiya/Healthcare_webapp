@@ -332,8 +332,7 @@ public class PatientController {
               List<Documents> result = documentsRepository.findByPatients(id);
         Documents documents = result.get(0);
        
-        File file = new File("/workspace/webapp_with_mysql/." + documents.getDocsFilePath() + doc);
-
+        File file = new File("/workspace/Healthcare_webapp/." + documents.getDocsFilePath() + doc);
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=" + doc;
